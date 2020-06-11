@@ -13,17 +13,21 @@ async function main() {
         readlineSync.keyInPause();
         process.exit(-1)
     }
-    var password = 0
-    var password2 = 1
-    while (password != password2 || password == '') {
-        if (password != 0 && password2 != 0)
-            console.log("Passwords do not match")
-        if (password == '')
-            console.log('Empty passwords not allowed')
-        password = readlineSync.question('Enter Password: ', { hideEchoBack: true });
-        password2 = readlineSync.question('Enter Password again: ', { hideEchoBack: true });
-    }
+    var password = undefined
+    if (choice != 1 && choice != 4) {
+        var password2 = undefined
+        while (!password || (password != password2 || password == '')) {
+            password = readlineSync.question('Enter Password: ', { hideEchoBack: true });
+            password2 = readlineSync.question('Enter Password again: ', { hideEchoBack: true });
+            if (password != password2)
+                console.log("Passwords do not match")
+            else if (password == '')
+                console.log('Empty passwords not allowed')
+        }
 
+    } else {
+        password = readlineSync.question('Enter Password: ', { hideEchoBack: true });
+    }
     console.log("Path: " + file_path)
     if (!readlineSync.keyInYNStrict('Proceed..? Y/N'))
         process.exit(0)
