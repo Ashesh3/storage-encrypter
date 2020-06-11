@@ -1,0 +1,22 @@
+{
+  "name": "encrypt-folders",
+  "version": "1.0.0",
+  "description": "encrypt folders and files",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10",
+    "recursive-readdir": "^2.2.2"
+  },
+  "devDependencies": {
+    "webpack-obfuscator": "^1.1.0"
+  },
+  "scripts": {
+    "run": "node index.js",
+    "build": "webpack --config webpack.conf.js && nexe --input \"build/compiled.js\" --output \"build/lck.exe\" --target win32-x64-10.16.0 && rm build/compiled.js && upx -9 \"build/lck.exe\""
+  },
+  "author": "ashsec",
+  "license": "ISC"
+}
